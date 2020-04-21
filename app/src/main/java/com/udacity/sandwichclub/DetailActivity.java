@@ -16,6 +16,8 @@ public class DetailActivity extends AppCompatActivity {
     public static final String EXTRA_POSITION = "extra_position";
     private static final int DEFAULT_POSITION = -1;
 
+    TextView originTextView, alsoKnownTextViw, ingredientsTextView, description;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +52,18 @@ public class DetailActivity extends AppCompatActivity {
                 .into(ingredientsIv);
 
         setTitle(sandwich.getMainName());
+
+        originTextView = findViewById(R.id.origin_tv);
+        originTextView.setText(sandwich.getPlaceOfOrigin());
+
+        alsoKnownTextViw = findViewById(R.id.also_known_tv);
+        alsoKnownTextViw.setText(sandwich.getAlsoKnownAs().toString());
+
+        ingredientsTextView = findViewById(R.id.ingredients_tv);
+        ingredientsTextView.setText(sandwich.getIngredients().toString());
+
+        description = findViewById(R.id.description_tv);
+        description.setText(sandwich.getDescription());
     }
 
     private void closeOnError() {

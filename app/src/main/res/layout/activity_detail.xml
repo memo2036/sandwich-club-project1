@@ -33,7 +33,7 @@
             android:id="@+id/origin_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="layout displays the origin label and content"/>
+            />
     </LinearLayout>
 
     <!-- linearlayout for the also known as text -->
@@ -51,7 +51,7 @@
             android:id="@+id/also_known_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="linearlayout for the also known as text"/>
+            />
     </LinearLayout>
 
     <!-- Ingredients text-->
@@ -69,7 +69,7 @@
             android:id="@+id/ingredients_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ingredients text"/>
+            />
     </LinearLayout>
 
     <!-- display of the description -->
@@ -86,8 +86,7 @@
         <TextView
             android:id="@+id/description_tv"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="display of the description display of the description display of the description display of the description display of the description display of the description"/>
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
 </LinearLayout>
