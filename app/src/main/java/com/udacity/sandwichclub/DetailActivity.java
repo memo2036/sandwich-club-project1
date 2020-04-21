@@ -11,12 +11,16 @@ import com.squareup.picasso.Picasso;
 import com.udacity.sandwichclub.model.Sandwich;
 import com.udacity.sandwichclub.utils.JsonUtils;
 
+import java.util.List;
+
 public class DetailActivity extends AppCompatActivity {
 
     public static final String EXTRA_POSITION = "extra_position";
     private static final int DEFAULT_POSITION = -1;
 
     TextView originTextView, alsoKnownTextViw, ingredientsTextView, description;
+    List<String> alsoKnwonAsStr, ingredientsStr;
+    String descriptionStr,originPlaceStr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +28,10 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
 
         ImageView ingredientsIv = findViewById(R.id.image_iv);
+        originTextView = findViewById(R.id.origin_tv);
+        alsoKnownTextViw = findViewById(R.id.also_known_tv);
+        ingredientsTextView = findViewById(R.id.ingredients_tv);
+        description = findViewById(R.id.description_tv);
 
         Intent intent = getIntent();
         if (intent == null) {
@@ -46,24 +54,17 @@ public class DetailActivity extends AppCompatActivity {
             return;
         }
 
-        populateUI();
+        alsoKnwonAsStr = sandwich.getAlsoKnownAs();
+        descriptionStr = sandwich.getDescription();
+        ingredientsStr = sandwich.getIngredients();
+        originPlaceStr = sandwich.getPlaceOfOrigin();
+
         Picasso.with(this)
                 .load(sandwich.getImage())
                 .into(ingredientsIv);
-
         setTitle(sandwich.getMainName());
 
-        originTextView = findViewById(R.id.origin_tv);
-        originTextView.setText(sandwich.getPlaceOfOrigin());
-
-        alsoKnownTextViw = findViewById(R.id.also_known_tv);
-        alsoKnownTextViw.setText(sandwich.getAlsoKnownAs().toString());
-
-        ingredientsTextView = findViewById(R.id.ingredients_tv);
-        ingredientsTextView.setText(sandwich.getIngredients().toString());
-
-        description = findViewById(R.id.description_tv);
-        description.setText(sandwich.getDescription());
+        populateUI();
     }
 
     private void closeOnError() {
@@ -73,5 +74,9 @@ public class DetailActivity extends AppCompatActivity {
 
     private void populateUI() {
 
+        originTextView.setText(originPlaceStr);
+        alsoKnownTextViw.setText(alsoKnwonAsStr.toString());
+        ingredientsTextView.setText(ingredientsStr.toString());
+        description.setText(descriptionStr);
     }
 }
