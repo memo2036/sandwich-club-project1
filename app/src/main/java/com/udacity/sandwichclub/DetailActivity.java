@@ -61,8 +61,10 @@ public class DetailActivity extends AppCompatActivity {
 
         Picasso.with(this)
                 .load(sandwich.getImage())
+                .noPlaceholder()
+                .placeholder(R.drawable.user_placeholder)
+                .error(R.drawable.user_placeholder_error)
                 .into(ingredientsIv);
-        setTitle(sandwich.getMainName());
 
         populateUI();
     }
@@ -73,7 +75,6 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void populateUI() {
-
         originTextView.setText(originPlaceStr);
         alsoKnownTextViw.setText(alsoKnwonAsStr.toString());
         ingredientsTextView.setText(ingredientsStr.toString());
