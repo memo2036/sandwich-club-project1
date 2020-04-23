@@ -12,24 +12,30 @@ import java.util.List;
 
 public class JsonUtils {
 
-
     private static Sandwich mSandwich = new Sandwich();
 
+    private static final String name = "name";
+    private static final String alsoKnownAs = "alsoKnownAs";
+    private static final String ingredients = "ingredients";
+    private static final String mainName = "mainName";
+    private static final String description = "description";
+    private static final String placeOfOrigin = "placeOfOrigin";
+    private static final String image = "image";
 
     public static Sandwich parseSandwichJson(String json) {
         try {
             JSONObject sandwichObject = new JSONObject(json);
-            JSONObject sandwich = sandwichObject.getJSONObject("name");
+            JSONObject sandwich = sandwichObject.optJSONObject(name);
 
-            List<String> knwonAsList = convertJsonArrayToStringList(sandwich.getJSONArray("alsoKnownAs"));
-            List<String> ingrdList = convertJsonArrayToStringList(sandwichObject.getJSONArray("ingredients"));
+            List<String> knownAsList = convertJsonArrayToStringList(sandwich.optJSONArray(alsoKnownAs));
+            List<String> ingredList = convertJsonArrayToStringList(sandwichObject.optJSONArray(ingredients));
 
-            mSandwich.setMainName(sandwich.getString("mainName"));
-            mSandwich.setDescription(sandwichObject.getString("description"));
-            mSandwich.setPlaceOfOrigin(sandwichObject.getString("placeOfOrigin"));
-            mSandwich.setImage(sandwichObject.getString("image"));
-            mSandwich.setAlsoKnownAs(knwonAsList);
-            mSandwich.setIngredients(ingrdList);
+            mSandwich.setMainName(sandwich.optString(mainName));
+            mSandwich.setDescription(sandwichObject.optString(description));
+            mSandwich.setPlaceOfOrigin(sandwichObject.optString(placeOfOrigin));
+            mSandwich.setImage(sandwichObject.optString(image));
+            mSandwich.setAlsoKnownAs(knownAsList);
+            mSandwich.setIngredients(ingredList);
         }catch (JSONException e){ e.printStackTrace();}
 
         return mSandwich;
